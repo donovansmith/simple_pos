@@ -1,4 +1,3 @@
-# simple_pos
 <h2>seis602_simplepos</h2>
 
 Prerequisites:

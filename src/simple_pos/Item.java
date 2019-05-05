@@ -7,7 +7,13 @@ public class Item {
 	private String supplier;
 	private int threshold;
 	
-	
+	Item(String name, double price, int quantity, String supplier, int threshold){
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
+		this.supplier = supplier;
+		this.threshold = threshold;
+	}
 	
 	
 	//getters and setters 

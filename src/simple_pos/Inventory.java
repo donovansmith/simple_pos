@@ -7,29 +7,31 @@ import java.io.FileReader;
 
 public class Inventory {
 
+	private int count = 0;
 	private Item[] inventory = new Item[25];
 	BufferedReader br = null;
 	String line = "";
-	private int count=0;
 	
-	try{
-		br = new BufferedReader(new FileReader("Inventory.csv"));
+	Inventory(){
+		try{
+			br = new BufferedReader(new FileReader("Inventory.csv"));
 
-		while ((line = br.readLine()) != null) {
-			String item[] = line.split(",");
-			inventory[count] = new Item(item[0], Double.parseDouble(item[1]), Integer.parseInt(item[2]), item[3], Integer.parseInt(item[4]));
-			count++;
-		}	
-	}catch (FileNotFoundException e) {
-		e.printStackTrace();
-	}catch(IOException e) {
-		e.printStackTrace();
-	}finally {
-		if(br !=null) {
-			try {
-				br.close();
-			}catch(IOException e) {
-				e.printStackTrace();
+			while ((line = br.readLine()) != null) {
+				String item[] = line.split(",");
+				inventory[count] = new Item(item[0], Double.parseDouble(item[1]), Integer.parseInt(item[2]), item[3], Integer.parseInt(item[4]));
+				count++;
+			}
+		}catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}finally {
+			if(br !=null) {
+				try {
+					br.close();
+				}catch(IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

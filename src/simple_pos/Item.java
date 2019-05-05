@@ -15,7 +15,6 @@ public class Item {
 		this.threshold = threshold;
 	}
 	
-	
 	//getters and setters 
 	public String getName() {
 		return name;
@@ -47,6 +46,4 @@ public class Item {
 	public void setThreshold(int threshold) {
 		this.threshold = threshold;
 	}
-	
-	
 }

@@ -1,10 +1,12 @@
 package simple_pos;
 
+import java.util.ArrayList;
+
 public class Register {
 	
 	private int registerNumber;
 	private String user;
-	private Arraylist<Sale> userDrawer;
+	private ArrayList<Sale> userDrawer;
 	
 	Register(int registerNumber){
 		this.registerNumber = registerNumber;

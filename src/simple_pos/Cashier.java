@@ -24,6 +24,10 @@ public class Cashier {
 	public void removeFromDrawer(Sale ret) {
 		drawer.remove(ret);
 	}
+
+	//TODO ask for cash while finishing up the sale
+	public void cashRequested(){
+	}
 	
 	//function depends on definition of being "logged in"
 	public void logOut() {

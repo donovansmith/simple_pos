@@ -5,7 +5,7 @@ public interface Transactions {
 	void removeItem(Object Item);
 	void cancel();
 	boolean makeSale();
-	boolean makeReturn();
+	boolean makeReturn(Object item);
 	double getPayment(double amountPaid, double balance);
 	void requestCash();
 	double returnPayment(double amountReturned);

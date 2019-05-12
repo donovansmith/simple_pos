@@ -28,7 +28,9 @@ public class Return extends Sale implements Transactions {
 	}
 
 	@Override
-	public boolean makeReturn() {
+	public boolean makeReturn(Object removeItem) {
+
+		removeItem(removeItem);
 
 		try {
 			//calculate total

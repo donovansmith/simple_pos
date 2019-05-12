@@ -100,7 +100,7 @@ public class Sale implements Transactions {
 
 
 	@Override
-	public boolean makeReturn() {
+	public boolean makeReturn(Object item) {
 		return false;
 	}
 

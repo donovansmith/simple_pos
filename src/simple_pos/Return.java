@@ -54,6 +54,9 @@ public class Return extends Sale implements Transactions {
 			return false;
 		}
 
+		//update currentsale to return sale items
+		currentSale=returnSale;
+
 		return true;
 	}
 

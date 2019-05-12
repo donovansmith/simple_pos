@@ -89,5 +89,10 @@ public class Return extends Sale implements Transactions {
 		// TODO Auto-generated method stub
 
 	}
-
+	@Override
+    public String toString() {
+        return "Return{" +
+                "returnSale=" + returnSale +
+                '}';
+    }
 }

@@ -98,7 +98,7 @@ public class Sale implements Transactions {
 		return receipt;
 	}
 
-
+	
 	@Override
 	public boolean makeReturn(Object item) {
 		return false;
@@ -109,4 +109,8 @@ public class Sale implements Transactions {
 		return amountReturned;
 	}
 
+	@Override
+    public String toString() {
+        return "" + currentSale;
+	}
 }

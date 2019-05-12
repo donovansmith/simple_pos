@@ -46,4 +46,9 @@ public class Item {
 	public void setThreshold(int threshold) {
 		this.threshold = threshold;
 	}
+	@Override
+	public String toString() {
+        return "Item Name: " + name + "\nItem Price: " + price + "\nQuantity Avalible: " + quantity + "\nSupplier: " + supplier
+                + "\nOrder Threshold: " + threshold + "\n";
+    }
 }

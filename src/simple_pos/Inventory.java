@@ -3,6 +3,7 @@ package simple_pos;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
 import java.io.FileReader;
 
 public class Inventory {
@@ -45,6 +46,7 @@ public class Inventory {
 		}
 	}
 	
+	
 	public void removeFromInventory(Item oldItem) {
 		for (int i = 0; i < inventory.length; i++) {
 			if(oldItem.getName().contentEquals(inventory[i].getName())) {
@@ -62,4 +64,27 @@ public class Inventory {
 			}
 		}
 	}
+	
+	public Item searchInventory(String name) {
+		for (int i = 0; i < inventory.length; i++) {
+			if (inventory[i].getName().equalsIgnoreCase(name) ) {
+				return inventory[i];
+			}
+		}
+		return null;
+	}
+	
+	@Override
+    public String toString() {
+        String s = null;
+        for (int i = 0; i < inventory.length; i++) {
+            if (i == 0){
+                s = "Inventory: ";
+            }
+            if (inventory[i] != null) {
+                s += "\n" + inventory[i];
+            }
+        }
+        return s;
+    }
 }

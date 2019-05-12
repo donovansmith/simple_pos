@@ -13,11 +13,11 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	//GUI Components
 	static AnchorPane root;	
-	static List<AnchorPane> grid = new ArrayList<AnchorPane>();	
+	protected static List<AnchorPane> grid = new ArrayList<AnchorPane>();	
 	private static int CurrentPaneIndex=0;
 	
 	//App
-	static Management management;
+	private static Management management;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -26,6 +26,7 @@ public class Main extends Application {
 			
 			grid.add((AnchorPane)FXMLLoader.load(getClass().getResource("GUILogin.fxml")));
 			grid.add((AnchorPane)FXMLLoader.load(getClass().getResource("GUICashier.fxml")));
+			
 			
 			root.getChildren().add(grid.get(0));
 						
@@ -53,5 +54,10 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		management=new Management();
 		launch(args);
+	}
+
+	public static Management getManagement() {
+		return management;
+		
 	}
 }

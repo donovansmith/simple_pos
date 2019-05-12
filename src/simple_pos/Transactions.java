@@ -4,5 +4,10 @@ public interface Transactions {
 	void addItem(Object Item);
 	void removeItem(Object Item);
 	void cancel();
-	double getPayment();
+	boolean makeSale();
+	boolean makeReturn(Object item);
+	double getPayment(double amountPaid, double balance);
+	void requestCash();
+	double returnPayment(double amountReturned);
+	Receipt generateReceipt();
 }

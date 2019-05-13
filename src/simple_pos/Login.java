@@ -52,15 +52,17 @@ public class Login {
      return new Users(name, userName, password);
  }
 
-  public boolean authenticate(String[] metadata) {
+  public String authenticate(String[] metadata) {
      String userName = metadata[0];
      String password = metadata[1];
 
-      for (int i = 0; i < users.size(); i++) {
-          if ((users[i]).getUserName().equals(userName) {
-              return true;
-          }
-      }
-      return false;
+
+     for (int i = 0; i < users.size(); i++) {
+         if (((Users) users.get(i)).getUserName().equals(userName) && ((Users) users.get(i)).getPassword().equals(password)) {
+             return users.get(i).getName();
+         }
+     }
+      return "";
   }
+  
 }

@@ -111,6 +111,10 @@ public class Sale implements Transactions {
 
 	@Override
     public String toString() {
-        return "" + currentSale;
+		String toString="";
+		for ( Map.Entry saleItem : currentSale.entrySet()  ) {
+             toString += ((Item) saleItem.getKey()).getName() + "      " + saleItem.getValue() + "\n";
+		}
+		return toString;
 	}
 }

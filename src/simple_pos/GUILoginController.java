@@ -30,13 +30,19 @@ public class GUILoginController {
     private void EHLoginButton(ActionEvent event) {
     	
     	//https://code.makery.ch/blog/javafx-dialogs-official/
-    	Alert alert = new Alert(AlertType.INFORMATION);
-    	alert.setTitle("Information Dialog");
-    	alert.setHeaderText(null);
-    	alert.setContentText("I have a great message for you!");
 
-    	alert.showAndWait();
-    	Main.getManagement().login(usernameTF.getText(), passwordPF.getText());
-    	Main.setPane(1);
+
+    	
+    	if (Main.getManagement().login(usernameTF.getText(), passwordPF.getText()) ) {
+    		Main.setPane(1);
+    	}
+    	else {
+        	Alert alert = new Alert(AlertType.ERROR);
+        	alert.setTitle("Incorrect Logon");
+        	alert.setHeaderText(null);
+        	alert.setContentText("Incorrect Username/Password");
+        	alert.showAndWait();
+    	}
+    	
     }
 }

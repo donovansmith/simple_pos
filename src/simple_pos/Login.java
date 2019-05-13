@@ -20,9 +20,9 @@ public class Login {
 
   BufferedReader br = null;
   String line = "";
-
-  private static List<Users> Login(String name) {
-      List<Users> users = new ArrayList<>();
+  
+  public Login() {
+      this.users = new ArrayList<>();
       java.nio.file.Path pathToFile = Paths.get("Login.csv");
 
       try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
@@ -36,12 +36,11 @@ public class Login {
 
               line = br.readLine();
 
-              ((Login) users).authenticate(attributes);
           }
       } catch (IOException ioe) {
           ioe.printStackTrace();
       }
-      return users;
+      
   }
 
   private static Users createUser(String[] metadata) {

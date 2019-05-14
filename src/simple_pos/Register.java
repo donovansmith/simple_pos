@@ -17,5 +17,17 @@ public class Register {
 		this.user = user.getName();
 		this.userDrawer = user.getDrawer();		
 	}
+	
+	@Override
+	public String toString() {
+		String s = this.registerNumber + "/n" + this.user + "/n";
+		for(int d = 0; d < userDrawer.size(); d++) {
+			for(int r = 0; r < userDrawer.get(d).receiptsGenerated.size(); r++) {
+				s+= userDrawer.get(d).receiptsGenerated.get(r);
+			}
+		}
+		return s;
+	}
+
 
 }

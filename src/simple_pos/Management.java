@@ -87,22 +87,26 @@ public class Management {
 		return time;
 	}
 	
+	public void createIventoryReport() { //where does this go?
+		String inventoryReport = mainInventory.toString(); 
+	}
 	
+	public void createCashierReport() { //where does this go?
+		String cashierReport = "";
+		for(int n = 0; n < cashiers.size(); n++) {
+			cashierReport += cashiers.get(n).getName() + "\n";
+			for(int d = 0; d < cashiers.get(n).getDrawer().size(); d++) {
+				cashierReport += "Sale " + d + ":" + cashiers.get(n).getDrawer().get(d).toString() + "\n"; //or could use receipt
+			}
+		}
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public void createRegisterReport() { //where does this go?
+		String registerReport = "";
+		for(int c = 0; c < registers.size(); c++) {
+			registerReport += registers.get(c).toString();
+		}
+	}
 	
 	//Getters & Setters
 	protected Inventory getMainInventory() {

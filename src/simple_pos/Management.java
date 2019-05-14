@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Management {
@@ -25,6 +27,7 @@ public class Management {
 		this.cashiers= new ArrayList<Cashier>();
 		this.registers= new ArrayList<Register>();
 		this.login= new Login();
+		
 		try{
 			br = new BufferedReader(new FileReader("Registers.csv"));
 
@@ -74,6 +77,14 @@ public class Management {
 			return;
 		}
 		currentSale.removeItem(saleItem);		
+	}
+	
+	public String getTime() {
+		String time;
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");  
+		Date date = new Date(System.currentTimeMillis());  
+		time = formatter.format(date);  
+		return time;
 	}
 	
 	

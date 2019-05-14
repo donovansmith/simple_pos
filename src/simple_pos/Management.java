@@ -79,7 +79,7 @@ public class Management {
 		currentSale.removeItem(saleItem);		
 	}
 	
-	public String getTime() {
+	public static String getTime() {
 		String time;
 		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");  
 		Date date = new Date(System.currentTimeMillis());  

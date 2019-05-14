@@ -20,5 +20,10 @@
 			<type>1</type>
 			<locationURI>PROJECT_LOC/Login.csv</locationURI>
 		</link>
+		<link>
+			<name>Registers.csv</name>
+			<type>1</type>
+			<location>C:/Users/Smith/Documents/Eclipse/seis602_simple_pos/Registers.csv</location>
+		</link>
 	</linkedResources>
 </projectDescription>

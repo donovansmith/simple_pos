@@ -6,15 +6,18 @@ import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 	//GUI Components
 	static AnchorPane root;	
 	protected static List<AnchorPane> grid = new ArrayList<AnchorPane>();	
-	private static int CurrentPaneIndex=0;
+	protected static int CurrentPaneIndex=0;
 	
 	//App
 	private static Management management;
@@ -60,4 +63,17 @@ public class Main extends Application {
 		return management;
 		
 	}
+	
+	public static void receiptPopup(){
+		Stage receiptStage = new Stage();
+		receiptStage.setTitle("Receipt");
+		VBox comp = new VBox();
+		TextArea receipt = new TextArea();
+		receipt.setEditable(false);
+		receipt.setPrefHeight(600);
+		comp.getChildren().add(receipt);
+		Scene stageScene = new Scene(comp, 300, 600);
+		receiptStage.setScene(stageScene);
+		receiptStage.show();
+		}
 }

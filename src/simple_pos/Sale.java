@@ -8,11 +8,16 @@ import java.util.Map;
 
 public class Sale implements Transactions {
 
+	Tracker tracker = Tracker.getInstance();
+
+	//decalre final saleId
+	final int saleId = tracker.getSaleId();
+
 	//store current sale item and quantity
 	HashMap<Item, Integer> currentSale = new HashMap<>();
 
 	//keeping lists of currentSale receipts and any subsequent returns or exchange receipts
-	 ArrayList<Receipt> receiptsGenerated = new ArrayList<>();
+	ArrayList<Receipt> receiptsGenerated = new ArrayList<>();
 
 	//receipt generated
 	Receipt receipt = null;
@@ -29,6 +34,8 @@ public class Sale implements Transactions {
 	//balance remaining to be paid
 	double balance = 0;
 
+	//getting inventory instance
+	Inventory inventory = new Inventory();
 
 	@Override
 	public void addItem(Object item) {
@@ -36,7 +43,9 @@ public class Sale implements Transactions {
 		if (currentSale.containsKey(newItem))
 			currentSale.put(newItem, currentSale.get(item)+1);
 		else
-		currentSale.put(newItem, 1);
+			currentSale.put(newItem, 1);
+		newItem.setQuantity(1);  //making sure we set item quantity to 1 to reduce inventory quantity for this item by only 1
+		inventory.removeFromInventory(newItem);
 	}
 
 	@Override
@@ -46,6 +55,8 @@ public class Sale implements Transactions {
 			currentSale.put(newItem, currentSale.get(newItem)-1);
 			if(currentSale.get(newItem)<=0)
 				currentSale.remove(newItem);
+			newItem.setQuantity(1); //making sure we set item quantity to 1 to increase inventory quantity for this item by only 1
+			inventory.addToInventory(newItem);
 		}
 	}
 
@@ -62,6 +73,7 @@ public class Sale implements Transactions {
 	@Override
 	public boolean makeSale() {
 		try {
+
 			//calculate total
 			for (Map.Entry<Item, Integer> singleSale : currentSale.entrySet()) {
 				Item item = singleSale.getKey();
@@ -76,6 +88,9 @@ public class Sale implements Transactions {
 			generateReceipt();
 			//adding the receipt generated to our list of receipts for sale
 			receiptsGenerated.add(receipt);
+
+			//adding the sale to tracker
+			tracker.addSale(this);
 
 		}catch (NullPointerException | IllegalArgumentException e){
 			System.out.println("caught exception while making sale. Error is : " + e);
@@ -94,11 +109,11 @@ public class Sale implements Transactions {
 
 	@Override
 	public Receipt generateReceipt(){
-		receipt = new Receipt(new Date(), null, total, currentSale,amountPaid, balance,0);
+		receipt = new Receipt(saleId, new Date(), null, total, currentSale,amountPaid, balance,0);
 		return receipt;
 	}
 
-	
+
 	@Override
 	public boolean makeReturn(Object item) {
 		return false;
@@ -108,13 +123,10 @@ public class Sale implements Transactions {
 	public double returnPayment(double amountReturned){
 		return amountReturned;
 	}
-
-	@Override
-    public String toString() {
-		String toString="";
-		for ( Map.Entry saleItem : currentSale.entrySet()  ) {
-             toString += ((Item) saleItem.getKey()).getName() + "      " + saleItem.getValue() + "\n";
-		}
-		return toString;
+	
+	//Getters and setters
+	public double getTotal() {
+		return this.total;
 	}
+
 }

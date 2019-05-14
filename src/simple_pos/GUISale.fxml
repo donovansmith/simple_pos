@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="simple_pos.GUISaleController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="simple_pos.GUISaleController">
   <children>
     <VBox prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
@@ -18,14 +18,13 @@
         </HBox>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
           <children>
-            <VBox prefHeight="500.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+            <VBox prefHeight="500.0" prefWidth="15.0" HBox.hgrow="ALWAYS">
               <children>
                 <GridPane alignment="CENTER" VBox.vgrow="ALWAYS">
                   <children>
                     <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Start Sale" />
                     <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Start Return" GridPane.rowIndex="1" />
-                    <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Logout" GridPane.rowIndex="2" />
-                    <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="3" />
+                    <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#EHLogoutButton" prefHeight="110.0" prefWidth="110.0" text="Logout" GridPane.rowIndex="3" />
                   </children>
                   <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -41,39 +40,66 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="400.0" HBox.hgrow="ALWAYS">
               <children>
-                <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
-                  <children>
-                    <TextArea fx:id="inventoryTA" editable="false" prefHeight="253.0" prefWidth="400.0" />
-                  </children>
-                </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
-                  <children>
-                    <TextArea fx:id="currentSaleTA" editable="false" prefHeight="253.0" prefWidth="400.0" />
-                  </children>
-                </VBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                           <children>
+                      <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                        <children>
+                                    <VBox alignment="CENTER" prefHeight="34.0" prefWidth="258.0" VBox.vgrow="NEVER">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory" />
+                                       </children>
+                                    </VBox>
+                          <TextArea fx:id="inventoryTA" editable="false" prefHeight="253.0" prefWidth="400.0" VBox.vgrow="ALWAYS" />
+                        </children>
+                      </VBox>
+                      <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                        <children>
+                                    <VBox alignment="CENTER" prefHeight="34.0" prefWidth="258.0" VBox.vgrow="NEVER">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Current Sale" />
+                                       </children>
+                                    </VBox>
+                          <TextArea fx:id="currentSaleTA" editable="false" prefHeight="253.0" prefWidth="400.0" VBox.vgrow="ALWAYS" />
+                        </children>
+                      </VBox>
+                           </children>
+                        </HBox>
               </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+            <VBox prefHeight="500.0" prefWidth="28.0" HBox.hgrow="ALWAYS">
               <children>
-                <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0" />
+                              <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <TextField fx:id="TotalTF" editable="false" prefHeight="33.0" prefWidth="200.0">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
                 <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
                 <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                           <children>
+                  <TextField fx:id="ItemTF" prefHeight="33.0" prefWidth="200.0" promptText="Enter Item Name Here:" />
+                  <TextField fx:id="QtyTF" prefHeight="33.0" prefWidth="70.0" promptText="Qty" />
+                  <Button fx:id="AddToSaleButton" mnemonicParsing="false" onAction="#EHAddToSaleButton" prefHeight="25.0" prefWidth="222.0" text="Add To Sale" />
+                           </children></VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                   <children>
-                    <VBox prefHeight="200.0" prefWidth="100.0">
-                      <children>
-                        <TextField fx:id="ItemTF" prefHeight="33.0" prefWidth="200.0" promptText="Enter Item Name Here:" />
-                      </children>
-                    </VBox>
-                    <VBox prefHeight="200.0" prefWidth="100.0">
-                      <children>
-                        <TextField fx:id="QtyTF" prefHeight="33.0" prefWidth="70.0" promptText="Qty" />
-                      </children>
-                    </VBox>
-                    <VBox prefHeight="200.0" prefWidth="100.0">
-                      <children>
-                        <Button fx:id="AddToSaleButton" mnemonicParsing="false" onAction="#EHAddToSaleButton" prefHeight="25.0" prefWidth="222.0" text="Add To Sale" />
-                      </children>
-                    </VBox>
+                    <VBox prefHeight="200.0" prefWidth="100.0" />
+                    <VBox prefHeight="200.0" prefWidth="100.0" />
+                    <VBox prefHeight="200.0" prefWidth="100.0" />
+                              <Button fx:id="CompleteSaleButton" mnemonicParsing="false" onAction="#EHCompleteSaleButton" prefHeight="25.0" prefWidth="222.0" text="Complete Sale" />
                   </children>
                 </VBox>
               </children>
@@ -83,5 +109,6 @@
         <HBox prefHeight="50.0" prefWidth="800.0" />
       </children>
     </VBox>
+      <HBox prefHeight="34.0" prefWidth="200.0" />
   </children>
 </AnchorPane>

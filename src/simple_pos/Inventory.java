@@ -79,7 +79,7 @@ public class Inventory {
         String s = null;
         for (int i = 0; i < inventory.length; i++) {
             if (i == 0){
-                s = "Inventory: ";
+                s = "";
             }
             if (inventory[i] != null) {
                 s += "\n" + inventory[i];

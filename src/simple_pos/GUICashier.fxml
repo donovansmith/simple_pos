@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="simple_pos.GUICashierController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="simple_pos.GUICashierController">
   <children>
     <VBox prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
@@ -24,8 +24,7 @@
                   <children>
                     <Button fx:id="startSaleButton" mnemonicParsing="false" onAction="#EHStartSaleButton" prefHeight="110.0" prefWidth="110.0" text="Start Sale" />
                     <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Start Return" GridPane.rowIndex="1" />
-                    <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Logout" GridPane.rowIndex="2" />
-                    <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="3" />
+                    <Button fx:id="LogoutButton" mnemonicParsing="false" onAction="#EHLogoutButton" prefHeight="110.0" prefWidth="110.0" text="Logout" GridPane.rowIndex="3" />
                   </children>
                   <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

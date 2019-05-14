@@ -6,7 +6,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Receipt {
 
-    private static final AtomicInteger count = new AtomicInteger(0);
+    //getting tracker instance
+    Tracker tracker = Tracker.getInstance();
 
     private int receiptId = 0;
     private Date purchaseDate;
@@ -16,6 +17,16 @@ public class Receipt {
     private double amountPaid=0;
     private double balance = 0;
     private double amountReturned = 0;
+    private int saleId = 0;
+
+
+    public int getSaleId() {
+        return saleId;
+    }
+
+    public void setSaleId(int saleId) {
+        this.saleId = saleId;
+    }
 
     public double getAmountReturned() {
         return amountReturned;
@@ -82,20 +93,18 @@ public class Receipt {
         this.soldItems = soldItems;
     }
 
-    public Receipt(Date purchaseDate, Date returnDate, Double total, HashMap<Item, Integer> soldItems, double amountPaid,double balance, double amountReturned) {
-        this.receiptId = receiptId;
+    public Receipt(int saleId, Date purchaseDate, Date returnDate, Double total, HashMap<Item, Integer> soldItems, double amountPaid,double balance, double amountReturned) {
         this.purchaseDate = purchaseDate;
         this.returnDate = returnDate;
         this.total = total;
         this.soldItems = soldItems;
         this.amountReturned = amountReturned;
+        this.saleId = saleId;
+        receiptId = tracker.getReceiptId();
     }
-
-
 
     @Override
     public String toString() {
-        receiptId = count.incrementAndGet();
         return "Receipt{" +
                 "receiptId=" + receiptId +
                 ", purchaseDate=" + purchaseDate +

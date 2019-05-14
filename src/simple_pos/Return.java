@@ -17,15 +17,20 @@ public class Return extends Sale implements Transactions {
 
 	Receipt newReceipt = null;
 
+
+
 	@Override
 	public void removeItem(Object item) {
 		Item newItem = (Item)item;
 		if(returnSale.containsKey(newItem)){
 			returnSale.put(newItem, returnSale.get(newItem)-1);
+			newItem.setQuantity(1);
+			inventory.removeFromInventory(newItem);
 			if(returnSale.get(newItem)<=0)
 				returnSale.remove(newItem);
 		}
 	}
+
 
 	@Override
 	public boolean makeReturn(Object removeItem) {
@@ -74,11 +79,11 @@ public class Return extends Sale implements Transactions {
 
 	@Override
 	public Receipt generateReceipt(){
-		newReceipt = new Receipt(receipt.getPurchaseDate(), new Date(), newTotal, returnSale,0, 0,amountReturned);
+		newReceipt = new Receipt(saleId, receipt.getPurchaseDate(), new Date(), newTotal, returnSale,0, 0,amountReturned);
 		return newReceipt;
 	}
 
-	// This methods is not valid for return sale
+	// This method is not valid for return sale
 
 	@Override
 	public void addItem(Object Item) {
@@ -89,10 +94,5 @@ public class Return extends Sale implements Transactions {
 		// TODO Auto-generated method stub
 
 	}
-	@Override
-    public String toString() {
-        return "Return{" +
-                "returnSale=" + returnSale +
-                '}';
-    }
+
 }

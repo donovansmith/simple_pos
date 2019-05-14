@@ -14,6 +14,10 @@ public class Item {
 		this.supplier = supplier;
 		this.threshold = threshold;
 	}
+
+	public void reduceQuantityBy(int quantity){
+		this.quantity = this.quantity-1;
+	}
 	
 	//getters and setters 
 	public String getName() {

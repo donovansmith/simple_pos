@@ -1,5 +1,9 @@
 package simple_pos;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Management {
@@ -10,6 +14,10 @@ public class Management {
 	
 	private Cashier currentCashier;
 	private Sale currentSale;
+	private Register currentRegister;
+	
+	BufferedReader br = null;
+	String line = "";
 	
 
 	public Management() {
@@ -17,6 +25,16 @@ public class Management {
 		this.cashiers= new ArrayList<Cashier>();
 		this.registers= new ArrayList<Register>();
 		this.login= new Login();
+		try{
+			br = new BufferedReader(new FileReader("Registers.csv"));
+
+			while ((line = br.readLine()) != null) {
+				this.currentRegister = new Register(Integer.parseInt(line));
+				registers.add(this.currentRegister);
+			}
+	     }catch (IOException ioe) {
+	    	ioe.printStackTrace();
+	     }
 	}
 	
 	public boolean login(String username, String password) {
@@ -30,6 +48,7 @@ public class Management {
 		if (loginSuccess  != "" ) {
 			
 			this.currentCashier = new Cashier(loginSuccess);
+			this.currentRegister.setCashier(this.currentCashier);
 			return true;
 		}
 		else {

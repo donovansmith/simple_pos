@@ -12,15 +12,10 @@ public class Register {
 		this.registerNumber = registerNumber;
 	}
 	
-	Register(Cashier user){
+
+	public void setCashier(Cashier user){
 		this.user = user.getName();
 		this.userDrawer = user.getDrawer();		
-	}
-	
-	Register(Cashier user, int registerNumber){
-		this.user = user.getName();
-		this.userDrawer = user.getDrawer();		
-		this.registerNumber = registerNumber;
 	}
 
 }

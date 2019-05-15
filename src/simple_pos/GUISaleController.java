@@ -104,17 +104,20 @@ public class GUISaleController {
     		Optional<String> result1 = dialog.showAndWait();
     		if (result1.isPresent()){
     			moneyOwedString=Main.getManagement().completeSale(Double.parseDouble(result1.get()));
-    			Alert alertChange = new Alert(AlertType.INFORMATION);
-    			alertChange.setTitle("Change");
-    			alertChange.setHeaderText(null);
-    			alertChange.setContentText("Return Change Amount: " + moneyOwedString );
-    			alertChange.showAndWait();
-    			Main.receiptPopup(Main.getManagement().getReceipts().toString()); 
-    			
+    			if (moneyOwedString != "") {
+    				Alert alertChange = new Alert(AlertType.INFORMATION);
+        			alertChange.setTitle("Change");
+        			alertChange.setHeaderText(null);
+        			alertChange.setContentText("Return Change Amount: " + moneyOwedString );
+        			alertChange.showAndWait();
+        			Main.receiptPopup(Main.getManagement().getReceipts().toString()); 
+        			
+        			currentSaleTA.setText("");
+                	inventoryTA.setText("");
+                Main.setPane(1);
+    			}
     		}  		
-        	currentSaleTA.setText("");
-        	inventoryTA.setText("");
-        Main.setPane(1);
+        	
     	}
     }
     

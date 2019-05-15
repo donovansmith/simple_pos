@@ -8,6 +8,11 @@ import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Optional;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 
 public class Management {
 	private Inventory mainInventory;
@@ -126,18 +131,31 @@ public class Management {
 		currentReturn.removeItem(returnItem);		
 	}
 	
+	
+	
 	public String completeSale(double payment) {
 		String moneyOwedString;
 		DecimalFormat df = new DecimalFormat("#.##");
-		double moneyOwed = payment - currentSale.total;
-		moneyOwedString =df.format(moneyOwed);
-		currentReceipt = currentSale.generateReceipt(this.saleId, payment, moneyOwed);
-		receipts.add(currentReceipt);
-		this.saleId++;
-		mainInventory.updateInventoryCSV();
-		this.mainInventory = new Inventory();
-		this.currentCashier.addToDrawer(this.currentSale);
-		return moneyOwedString;
+		if (payment < currentSale.total) {
+			Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Payment is not enough!");
+            alert.setHeaderText(null);
+            alert.setContentText("Please ask for more payment.");
+            Optional<ButtonType> result = alert.showAndWait();
+           
+            return "";
+		} else {
+			double moneyOwed = payment - currentSale.total;
+			moneyOwedString =df.format(moneyOwed);
+			currentReceipt = currentSale.generateReceipt(this.saleId, payment, moneyOwed);
+			receipts.add(currentReceipt);
+			this.saleId++;
+			mainInventory.updateInventoryCSV();
+			this.mainInventory = new Inventory();
+			this.currentCashier.addToDrawer(this.currentSale);
+			return moneyOwedString;
+		}
+		
 	}
 	
 	public String completeReturn() {

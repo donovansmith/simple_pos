@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -31,6 +32,7 @@ public class Management {
 		this.registers= new ArrayList<Register>();
 		this.receipts = new ArrayList<Receipt>();		
 		this.login= new Login();
+		
 		
 		try{
 			br = new BufferedReader(new FileReader("Registers.csv"));
@@ -85,9 +87,10 @@ public class Management {
 	
 	public String completeSale(double payment) {
 		String moneyOwedString;
+		DecimalFormat df = new DecimalFormat("#.##");
 		double moneyOwed = payment - currentSale.total;
-		moneyOwedString = Double.toString(moneyOwed);
-		currentReceipt = currentSale.generateReceipt(this.saleId);
+		moneyOwedString =df.format(moneyOwed);
+		currentReceipt = currentSale.generateReceipt(this.saleId, payment, moneyOwed);
 		receipts.add(currentReceipt);
 		this.saleId++;
 		return moneyOwedString;
@@ -138,5 +141,8 @@ public class Management {
 	}
 	protected Register getCurrentRegister() {
 		return currentRegister;
+	}
+	protected Receipt getReceipts() {
+		return currentReceipt;
 	}
 }

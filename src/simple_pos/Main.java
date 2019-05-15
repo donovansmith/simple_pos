@@ -62,13 +62,14 @@ public class Main extends Application {
 		return management;
 	}
 	
-	public static void receiptPopup(){
+	public static void receiptPopup(String receiptString){
 		Stage receiptStage = new Stage();
 		receiptStage.setTitle("Receipt");
 		VBox comp = new VBox();
 		TextArea receipt = new TextArea();
 		receipt.setEditable(false);
 		receipt.setPrefHeight(600);
+		receipt.setText(receiptString);
 		comp.getChildren().add(receipt);
 		Scene stageScene = new Scene(comp, 300, 600);
 		receiptStage.setScene(stageScene);

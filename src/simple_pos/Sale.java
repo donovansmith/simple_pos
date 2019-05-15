@@ -48,7 +48,7 @@ public class Sale implements Transactions {
 			currentSale.put(newItem, currentSale.get(item)+1);
 		else
 			currentSale.put(newItem, 1);
-		newItem.setQuantity(1);  //making sure we set item quantity to 1 to reduce inventory quantity for this item by only 1
+		newItem.setQuantity(newItem.getQuantity()-1);  //making sure we set item quantity to 1 to reduce inventory quantity for this item by only 1
 		inventory.removeFromInventory(newItem);
 		
 		//calculate total
@@ -62,7 +62,7 @@ public class Sale implements Transactions {
 			currentSale.put(newItem, currentSale.get(newItem)-1);
 			if(currentSale.get(newItem)<=0)
 				currentSale.remove(newItem);
-			newItem.setQuantity(1); //making sure we set item quantity to 1 to increase inventory quantity for this item by only 1
+			newItem.setQuantity(newItem.getQuantity()+1); //making sure we set item quantity to 1 to increase inventory quantity for this item by only 1
 			inventory.addToInventory(newItem);
 		}
 		//calculate total
@@ -71,13 +71,13 @@ public class Sale implements Transactions {
 
 	@Override
 	public void cancel() {
-		Set set = currentSale.entrySet();
-		Iterator iterator = set.iterator();
-		
-	    while(iterator.hasNext()) {
-	          Map.Entry mentry = (Map.Entry)iterator.next();
-	          removeItem(mentry.getKey());
-	       }
+		for (Map.Entry<Item, Integer> singleSale : currentSale.entrySet()) {
+			Item item = singleSale.getKey();
+			Integer quantity = singleSale.getValue();
+			item.setQuantity(quantity);
+			inventory.addToInventory(item);
+		}
+		currentSale = null;
 	}
 
 	@Override
@@ -115,9 +115,9 @@ public class Sale implements Transactions {
 	}
 
 	@Override
-	public Receipt generateReceipt(int saleId){
+	public Receipt generateReceipt(int saleId, double payment, double moneyOwed){
 		this.saleId=saleId;
-		receipt = new Receipt(saleId, new Date(), null, total, currentSale,amountPaid, balance,0);
+		receipt = new Receipt(saleId, new Date(), null, total, currentSale,payment, moneyOwed,0);
 		return receipt;
 	}
 
@@ -141,7 +141,7 @@ public class Sale implements Transactions {
     public String toString() {
 		String toString="";
 		for ( Map.Entry saleItem : currentSale.entrySet()  ) {
-             toString += ((Item) saleItem.getKey()).getName() + "      " + saleItem.getValue() + "\n";
+             toString += ((Item) saleItem.getKey()).getName() + "      " + saleItem.getValue() +  "\n";
 		}
 		return toString;
 	}

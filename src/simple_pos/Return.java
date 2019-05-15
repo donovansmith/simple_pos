@@ -78,7 +78,7 @@ public class Return extends Sale implements Transactions {
 	}
 
 	@Override
-	public Receipt generateReceipt(int saleId){
+	public Receipt generateReceipt(int saleId, double payment, double moneyOwed){
 		newReceipt = new Receipt(saleId, receipt.getPurchaseDate(), new Date(), newTotal, returnSale,0, 0,amountReturned);
 		return newReceipt;
 	}

@@ -1,7 +1,9 @@
 package simple_pos;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Receipt {
@@ -14,8 +16,8 @@ public class Receipt {
     private Date returnDate;
     private Double total;
     private HashMap<Item,Integer> soldItems;
-    private double amountPaid=0;
-    private double balance = 0;
+    private double amountPaid;
+    private String balance;
     private double amountReturned = 0;
     private int saleId = 0;
 
@@ -45,11 +47,11 @@ public class Receipt {
         this.amountPaid = amountPaid;
     }
 
-    public double getBalance() {
+    public String getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(String balance) {
         this.balance = balance;
     }
 
@@ -101,19 +103,26 @@ public class Receipt {
         this.amountReturned = amountReturned;
         this.saleId = saleId;
         this.receiptId = saleId;
+        this.amountPaid=amountPaid;
+        
+        DecimalFormat df = new DecimalFormat("#.##");
+        this.balance= df.format(balance);
     }
 
     @Override
     public String toString() {
-        return "Receipt{" +
-                "receiptId=" + receiptId +
-                ", purchaseDate=" + purchaseDate +
-                ", returnDate=" + returnDate +
-                ", total=" + total +
-                ", soldItems=" + soldItems +
-                ", amount Paid=" + amountPaid +
-                ", balance left=" + balance +
-                '}';
+		String toString="Receipt ID: " + receiptId + '\n' +
+                "Purchase Date: " + purchaseDate + '\n' + 
+                "------------------" + '\n';
+                
+		for ( Map.Entry saleItem : soldItems.entrySet()  ) {
+             toString += ((Item) saleItem.getKey()).getName() + "      " + saleItem.getValue() +  "\n";
+		}
+        toString+="------------------" + '\n' +
+                "Total: " + total + '\n' + 
+                "Amount Paid: " + amountPaid + '\n' +
+                "Change: " + balance;                
+        return toString;
     }
 
 }

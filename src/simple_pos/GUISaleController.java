@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
@@ -56,6 +57,7 @@ public class GUISaleController {
     	Main.getManagement().addToSale(ItemTF.getText());
     	ItemTF.setText("");
     	currentSaleTA.setText(Main.getManagement().getCurrentSale().toString());
+    	inventoryTA.setText(Main.getManagement().getMainInventory().toString());
     	TotalTF.setText(currencyFormat.format(Main.getManagement().getCurrentSale().getTotal()));
     }
 
@@ -82,24 +84,37 @@ public class GUISaleController {
     
     @FXML
     private void EHCompleteSaleButton(ActionEvent event) {    	
+    	String moneyOwedString=null;
+    	
     	Alert alert = new Alert(AlertType.CONFIRMATION);
     	alert.setTitle("Complete Sale?");
     	alert.setHeaderText(null);
     	alert.setContentText("Are you sure you want to complete the sale?");
     	Optional<ButtonType> result = alert.showAndWait();
     	
-    	Main.receiptPopup();
-
+    	   	
+    	
     	if (result.get() == ButtonType.OK){
-//    		if (Main.grid.size()!= 2) {
-//    			try {
-//    				for (int i=2; i<=Main.grid.size(); i++)
-//        			Main.grid.remove(i);
-//        		} catch (Exception e) {
-//        			e.printStackTrace();
-//        		}
-//    		}        	
-        	Main.setPane(1);
+    		TextInputDialog dialog = new TextInputDialog();
+    		dialog.setTitle("Recieve Payment");
+    		dialog.setHeaderText(null);
+    		dialog.setContentText("Amount Recieved: ");
+
+    		// Traditional way to get the response value.
+    		Optional<String> result1 = dialog.showAndWait();
+    		if (result1.isPresent()){
+    			moneyOwedString=Main.getManagement().completeSale(Double.parseDouble(result1.get()));
+    			Alert alertChange = new Alert(AlertType.INFORMATION);
+    			alertChange.setTitle("Change");
+    			alertChange.setHeaderText(null);
+    			alertChange.setContentText("Return Change Amount: " + moneyOwedString );
+    			alertChange.showAndWait();
+    			Main.receiptPopup(Main.getManagement().getReceipts().toString()); 
+    			
+    		}  		
+        	currentSaleTA.setText("");
+        	inventoryTA.setText("");
+        Main.setPane(1);
     	}
     }
     
@@ -114,6 +129,7 @@ public class GUISaleController {
     	Main.getManagement().removeFromSale(ItemTF.getText());
     	ItemTF.setText("");
     	currentSaleTA.setText(Main.getManagement().getCurrentSale().toString());
+    	inventoryTA.setText(Main.getManagement().getMainInventory().toString());
     	TotalTF.setText(currencyFormat.format(Main.getManagement().getCurrentSale().getTotal()));
     }
     

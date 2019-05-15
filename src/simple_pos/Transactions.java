@@ -9,5 +9,5 @@ public interface Transactions {
 	double getPayment(double amountPaid, double balance);
 	void requestCash();
 	double returnPayment(double amountReturned);
-	Receipt generateReceipt(int saleId);
+	Receipt generateReceipt(int saleId, double payment, double moneyOwed);
 }

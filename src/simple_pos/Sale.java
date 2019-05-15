@@ -63,6 +63,8 @@ public class Sale implements Transactions {
 			newItem.setQuantity(1); //making sure we set item quantity to 1 to increase inventory quantity for this item by only 1
 			inventory.addToInventory(newItem);
 		}
+		//calculate total
+		this.total-=newItem.getPrice();
 	}
 
 	@Override

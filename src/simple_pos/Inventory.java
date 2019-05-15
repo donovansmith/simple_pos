@@ -1,8 +1,10 @@
 package simple_pos;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.io.FileReader;
 
@@ -71,6 +73,26 @@ public class Inventory {
 		}
 		return null;
 	}
+	
+    public void updateInventoryCSV() {
+        try(PrintWriter writer = new PrintWriter(new File("Inventory1.csv"))){
+            StringBuilder s = new StringBuilder();
+            
+            int i = 0;
+            while(inventory[i] != null) {
+                s.append(inventory[i].getName() + ",");
+                s.append(inventory[i].getPrice() + ",");
+                s.append(inventory[i].getQuantity() + ",");
+                s.append(inventory[i].getSupplier() + ",");
+                s.append(inventory[i].getThreshold() + ",");
+                s.append('\n');
+                i++;
+            }
+            writer.write(s.toString());
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 	
 	@Override
     public String toString() {

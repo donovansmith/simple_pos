@@ -10,12 +10,52 @@
   <children>
     <VBox prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <HBox prefHeight="50.0" prefWidth="200.0">
-          <children>
-            <Text id="CashierTF" strokeType="OUTSIDE" strokeWidth="0.0" text="Cashier: " wrappingWidth="299.66015625" />
-            <Text id="RegisterTF" strokeType="OUTSIDE" strokeWidth="0.0" text="Register:" wrappingWidth="299.66015625" />
-          </children>
-        </HBox>
+            <HBox prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox prefHeight="50.0" prefWidth="54.0" HBox.hgrow="NEVER">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cashier: " wrappingWidth="52.66015625" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="161.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Text fx:id="headCashierT" strokeType="OUTSIDE" strokeWidth="0.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox prefHeight="50.0" prefWidth="42.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Register:" wrappingWidth="51.66015625" HBox.hgrow="SOMETIMES" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Text fx:id="headRegisterT" strokeType="OUTSIDE" strokeWidth="0.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox prefHeight="50.0" prefWidth="15.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time: " />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Text fx:id="headTimeT" strokeType="OUTSIDE" strokeWidth="0.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
           <children>
             <VBox prefHeight="500.0" prefWidth="15.0" HBox.hgrow="ALWAYS">
@@ -93,6 +133,7 @@
                   <TextField fx:id="ItemTF" prefHeight="33.0" prefWidth="200.0" promptText="Enter Item Name Here:" />
                   <TextField fx:id="QtyTF" prefHeight="33.0" prefWidth="70.0" promptText="Qty" />
                   <Button fx:id="AddToSaleButton" mnemonicParsing="false" onAction="#EHAddToSaleButton" prefHeight="25.0" prefWidth="222.0" text="Add To Sale" />
+                              <Button fx:id="removeFromSaleButton" mnemonicParsing="false" onAction="#EHRemoveFromSaleButton" prefHeight="25.0" prefWidth="222.0" text="Remove From Sale" />
                            </children></VBox>
                 <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                   <children>

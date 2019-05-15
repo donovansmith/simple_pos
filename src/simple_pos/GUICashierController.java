@@ -29,6 +29,7 @@ public class GUICashierController {
 	public void initialize() {
 		headCashierT.setText(Main.getManagement().getCurrentCashier().getName());
 		headRegisterT.setText(Integer.toString(Main.getManagement().getCurrentRegister().getRegisterNumber()));
+		headTimeT.setText(Management.getTime());
 	}
 	
     @FXML

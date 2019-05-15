@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 
@@ -27,6 +28,14 @@ public class GUISaleController {
 	private TextField TotalTF;
 	@FXML
 	private Button AddToSaleButton;
+	@FXML
+	private Button removeFromSaleButton;	
+	@FXML
+	private Text headTimeT;	
+	@FXML
+	private Text headRegisterT;
+	@FXML
+	private Text headCashierT;
 	
 	//Others
 	NumberFormat currencyFormat;
@@ -36,6 +45,9 @@ public class GUISaleController {
 		Main.getManagement().startSale();
 		inventoryTA.setText(Main.getManagement().getMainInventory().toString());
 		currencyFormat = NumberFormat.getCurrencyInstance(Locale.US); 
+		headCashierT.setText(Main.getManagement().getCurrentCashier().getName());
+		headRegisterT.setText(Integer.toString(Main.getManagement().getCurrentRegister().getRegisterNumber()));
+		headTimeT.setText(Management.getTime());
 	}
 	
 	@FXML
@@ -98,4 +110,21 @@ public class GUISaleController {
         	Main.setPane(1);
     	}
     }
+    
+    @FXML
+    private void EHRemoveFromSaleButton(ActionEvent event) {    	
+    	Alert alert = new Alert(AlertType.CONFIRMATION);
+    	alert.setTitle("Remove From Sale?");
+    	alert.setHeaderText(null);
+    	alert.setContentText("Are you sure you want to remove from the sale?");
+    	Optional<ButtonType> result = alert.showAndWait();
+    	
+    	Main.getManagement().removeFromSale(ItemTF.getText());
+    	ItemTF.setText("");
+    	currentSaleTA.setText(Main.getManagement().getCurrentSale().toString());
+    	TotalTF.setText(currencyFormat.format(Main.getManagement().getCurrentSale().getTotal()));
+
+    }
+    
+
 }

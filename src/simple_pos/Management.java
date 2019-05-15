@@ -79,6 +79,10 @@ public class Management {
 		currentSale.removeItem(saleItem);		
 	}
 	
+	public void cancelSale() {
+		currentSale.cancel();
+	}
+	
 	public static String getTime() {
 		String time;
 		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");  

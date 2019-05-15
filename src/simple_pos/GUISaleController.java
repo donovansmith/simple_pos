@@ -52,15 +52,7 @@ public class GUISaleController {
 	
 	@FXML
     private void EHAddToSaleButton(ActionEvent event) {    	
-    	//https://code.makery.ch/blog/javafx-dialogs-official/
-    	Alert alert = new Alert(AlertType.INFORMATION);
-    	alert.setTitle("Information Dialog");
-    	alert.setHeaderText(null);
-    	alert.setContentText("I have a great message for you!");
-
-    	alert.showAndWait();
-    	
-    	
+ 	
     	Main.getManagement().addToSale(ItemTF.getText());
     	ItemTF.setText("");
     	currentSaleTA.setText(Main.getManagement().getCurrentSale().toString());
@@ -123,7 +115,30 @@ public class GUISaleController {
     	ItemTF.setText("");
     	currentSaleTA.setText(Main.getManagement().getCurrentSale().toString());
     	TotalTF.setText(currencyFormat.format(Main.getManagement().getCurrentSale().getTotal()));
-
+    }
+    
+    @FXML
+    private void EHCancelSaleButton(ActionEvent event) {    	
+    	Alert alert = new Alert(AlertType.CONFIRMATION);
+    	alert.setTitle("Cancel Sale?");
+    	alert.setHeaderText(null);
+    	alert.setContentText("Are you sure you want to cancel sale?");
+    	Optional<ButtonType> result = alert.showAndWait();
+    	
+    	Main.getManagement().cancelSale();
+    	
+    	if (result.get() == ButtonType.OK){
+//    		if (Main.grid.size()!= 2) {
+//    			try {
+//    				for (int i=2; i<=Main.grid.size(); i++)
+//        			Main.grid.remove(i);
+//        		} catch (Exception e) {
+//        			e.printStackTrace();
+//        		}
+//    		}        	
+        	//Main.setPane(1);
+    		currentSaleTA.setText(Main.getManagement().getCurrentSale().toString());
+    	}
     }
     
 

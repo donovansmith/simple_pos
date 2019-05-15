@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Iterator;
+import java.util.Set;
 
 public class Sale implements Transactions {
 
@@ -69,7 +71,13 @@ public class Sale implements Transactions {
 
 	@Override
 	public void cancel() {
-		currentSale = null;
+		Set set = currentSale.entrySet();
+		Iterator iterator = set.iterator();
+		
+	    while(iterator.hasNext()) {
+	          Map.Entry mentry = (Map.Entry)iterator.next();
+	          removeItem(mentry.getKey());
+	       }
 	}
 
 	@Override

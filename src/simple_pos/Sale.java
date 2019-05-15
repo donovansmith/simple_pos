@@ -62,6 +62,13 @@ public class Sale implements Transactions {
 
 	@Override
 	public void cancel() {
+		//going through hashmap
+		for (Map.Entry<Item, Integer> singleSale : currentSale.entrySet()) {
+			Item item = singleSale.getKey();
+			Integer quantity = singleSale.getValue();
+			item.setQuantity(quantity);
+			inventory.addToInventory(item);
+		}
 		currentSale = null;
 	}
 

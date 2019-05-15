@@ -8,9 +8,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Receipt {
 
-    //getting tracker instance
-    Tracker tracker = Tracker.getInstance();
-
     private int receiptId = 0;
     private Date purchaseDate;
     private Date returnDate;

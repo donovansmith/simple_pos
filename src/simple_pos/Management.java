@@ -57,8 +57,19 @@ public class Management {
 		if (loginSuccess  != "" ) {
 			
 			this.currentCashier = new Cashier(loginSuccess);
-			this.currentRegister.setCashier(this.currentCashier);
 			cashiers.add(this.currentCashier);
+			
+			boolean openReg = false;
+			for (int reg=0; reg < registers.size(); reg++) {
+				if (registers.get(reg).getUser() == null) {
+					registers.get(reg).setCashier(this.currentCashier);
+					openReg = true;
+					break;
+				}
+			}
+			if (openReg == false) {
+				this.currentRegister.setCashier(this.currentCashier);
+			}
 			return true;
 		}
 		else {

@@ -18,6 +18,21 @@ public class Register {
 		this.userDrawer = user.getDrawer();		
 	}
 	
+	public String getUser() {
+		return user;
+	}
+
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+
+	public void setRegisterNumber(int registerNumber) {
+		this.registerNumber = registerNumber;
+	}
+
+
 	public void addToDrawer(Sale sale) {
 		this.userDrawer.add(sale);
 	}

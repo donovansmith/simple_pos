@@ -68,7 +68,7 @@ public class GUICashierController {
 
 		Main.reportPopup1(Main.getManagement().createCashierReport()); 
 		Main.reportPopup2(Main.getManagement().createIventoryReport()); 
-		//Main.reportPopup3(Main.getManagement().createRegisterReport()); 
+		Main.reportPopup3(Main.getManagement().createRegisterReport()); 
     	
     }
 

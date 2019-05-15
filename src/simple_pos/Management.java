@@ -41,9 +41,9 @@ public class Management {
 				this.currentRegister = new Register(Integer.parseInt(line));
 				registers.add(this.currentRegister);
 			}
-	     }catch (IOException ioe) {
+	    }catch (IOException ioe) {
 	    	ioe.printStackTrace();
-	     }
+	    }
 	}
 	
 	public boolean login(String username, String password) {
@@ -96,6 +96,7 @@ public class Management {
 		currentSale.inventory.updateInventoryCSV();
 		this.mainInventory = new Inventory();
 		this.currentCashier.addToDrawer(this.currentSale);
+		//this.currentRegister.addToDrawer(this.currentSale);
 		return moneyOwedString;
 	}
 	

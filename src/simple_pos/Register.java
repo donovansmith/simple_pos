@@ -1,6 +1,7 @@
 package simple_pos;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Register {
 	
@@ -18,21 +19,28 @@ public class Register {
 		this.userDrawer = user.getDrawer();		
 	}
 	
+	public void addToDrawer(Sale sale) {
+		this.userDrawer.add(sale);
+	}
+	
 	public int getRegisterNumber() {
 		return registerNumber;
 	}
 	
 	@Override
 	public String toString() {
-		String s = this.registerNumber + "/n" + this.user + "/n";
-		for(int d = 0; d < userDrawer.size(); d++) {
-			for(int r = 0; r < userDrawer.get(d).receiptsGenerated.size(); r++) {
-				s+= userDrawer.get(d).receiptsGenerated.get(r);
+		String s = null;
+		if (this.user == null) {
+			s = "Register number:" + this.registerNumber + "\n";
+			s += "No user today\n";
+		}
+		else{
+			s = "Register number:" + this.registerNumber + "\n" + "User: " + this.user + "\n" + "Drawer:\n";
+			for (int d = 0; d < this.userDrawer.size(); d++) {
+				s += this.userDrawer.get(d).toString() + "\n";
 			}
 		}
+		s += "\n";
 		return s;
 	}
-
-
-
 }

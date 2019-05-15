@@ -152,8 +152,7 @@ public class GUISaleController {
 //        			e.printStackTrace();
 //        		}
 //    		}        	
-        	//Main.setPane(1);
-    		currentSaleTA.setText(Main.getManagement().getCurrentSale().toString());
+    		Main.setPane(1);
     	}
     }
     

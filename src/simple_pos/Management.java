@@ -93,11 +93,13 @@ public class Management {
 		currentReceipt = currentSale.generateReceipt(this.saleId, payment, moneyOwed);
 		receipts.add(currentReceipt);
 		this.saleId++;
+		currentSale.inventory.updateInventoryCSV();
+		this.mainInventory = new Inventory();
 		return moneyOwedString;
 	}
 	
 	public void cancelSale() {
-		currentSale.cancel();
+		this.mainInventory = new Inventory();
 	}
 	
 	public static String getTime() {

@@ -75,7 +75,7 @@ public class Inventory {
 	}
 	
     public void updateInventoryCSV() {
-        try(PrintWriter writer = new PrintWriter(new File("Inventory1.csv"))){
+        try(PrintWriter writer = new PrintWriter(new File("Inventory.csv"))){
             StringBuilder s = new StringBuilder();
             
             int i = 0;

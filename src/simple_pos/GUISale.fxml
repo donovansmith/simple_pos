@@ -129,7 +129,6 @@
                 <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                            <children>
                   <TextField fx:id="ItemTF" prefHeight="33.0" prefWidth="200.0" promptText="Enter Item Name Here:" />
-                  <TextField fx:id="QtyTF" prefHeight="33.0" prefWidth="70.0" promptText="Qty" />
                   <Button fx:id="AddToSaleButton" mnemonicParsing="false" onAction="#EHAddToSaleButton" prefHeight="25.0" prefWidth="222.0" text="Add To Sale" />
                               <Button fx:id="removeFromSaleButton" mnemonicParsing="false" onAction="#EHRemoveFromSaleButton" prefHeight="25.0" prefWidth="222.0" text="Remove From Sale" />
                            </children></VBox>

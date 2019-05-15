@@ -95,6 +95,7 @@ public class Management {
 		this.saleId++;
 		currentSale.inventory.updateInventoryCSV();
 		this.mainInventory = new Inventory();
+		this.currentCashier.addToDrawer(this.currentSale);
 		return moneyOwedString;
 	}
 	
@@ -110,11 +111,12 @@ public class Management {
 		return time;
 	}
 	
-	public void createIventoryReport() { //where does this go?
+	public String createIventoryReport() { //where does this go?
 		String inventoryReport = mainInventory.toString(); 
+		return inventoryReport;
 	}
 	
-	public void createCashierReport() { //where does this go?
+	public String createCashierReport() { //where does this go?
 		String cashierReport = "";
 		for(int n = 0; n < cashiers.size(); n++) {
 			cashierReport += cashiers.get(n).getName() + "\n";
@@ -122,13 +124,15 @@ public class Management {
 				cashierReport += "Sale " + d + ":" + cashiers.get(n).getDrawer().get(d).toString() + "\n"; //or could use receipt
 			}
 		}
+		return cashierReport;
 	}
 	
-	public void createRegisterReport() { //where does this go?
+	public String createRegisterReport() { //where does this go?
 		String registerReport = "";
 		for(int c = 0; c < registers.size(); c++) {
 			registerReport += registers.get(c).toString();
 		}
+		return registerReport;
 	}
 	
 	//Getters & Setters

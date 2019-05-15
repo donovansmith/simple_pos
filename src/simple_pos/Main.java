@@ -75,4 +75,46 @@ public class Main extends Application {
 		receiptStage.setScene(stageScene);
 		receiptStage.show();
 		}
+	
+	public static void reportPopup1(String report){
+		Stage report1 = new Stage();
+		report1.setTitle("Cashier Report");
+		VBox comp = new VBox();
+		TextArea receipt = new TextArea();
+		receipt.setEditable(false);
+		receipt.setPrefHeight(600);
+		receipt.setText(report);
+		comp.getChildren().add(receipt);
+		Scene stageScene = new Scene(comp, 300, 600);
+		report1.setScene(stageScene);
+		report1.show();
+		}
+	
+	public static void reportPopup2(String report){
+		Stage report1 = new Stage();
+		report1.setTitle("Inventory Report");
+		VBox comp = new VBox();
+		TextArea receipt = new TextArea();
+		receipt.setEditable(false);
+		receipt.setPrefHeight(600);
+		receipt.setText(report);
+		comp.getChildren().add(receipt);
+		Scene stageScene = new Scene(comp, 300, 600);
+		report1.setScene(stageScene);
+		report1.show();
+		}
+	
+	public static void reportPopup3(String report){
+		Stage report1 = new Stage();
+		report1.setTitle("Register Report");
+		VBox comp = new VBox();
+		TextArea receipt = new TextArea();
+		receipt.setEditable(false);
+		receipt.setPrefHeight(600);
+		receipt.setText(report);
+		comp.getChildren().add(receipt);
+		Scene stageScene = new Scene(comp, 300, 600);
+		report1.setScene(stageScene);
+		report1.show();
+		}
 }

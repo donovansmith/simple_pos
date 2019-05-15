@@ -100,7 +100,7 @@ public class Receipt {
         this.soldItems = soldItems;
         this.amountReturned = amountReturned;
         this.saleId = saleId;
-        receiptId = tracker.getReceiptId();
+        this.receiptId = saleId;
     }
 
     @Override

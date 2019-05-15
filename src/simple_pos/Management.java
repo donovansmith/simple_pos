@@ -12,11 +12,14 @@ public class Management {
 	private Inventory mainInventory;
 	private ArrayList<Cashier> cashiers;
 	private ArrayList<Register> registers;
+	private ArrayList<Receipt> receipts;
 	private Login login;
 	
 	private Cashier currentCashier;
 	private Sale currentSale;
 	private Register currentRegister;
+	private Receipt currentReceipt;
+	private int saleId = 10000;
 	
 	BufferedReader br = null;
 	String line = "";
@@ -26,6 +29,7 @@ public class Management {
 		this.mainInventory=new Inventory();
 		this.cashiers= new ArrayList<Cashier>();
 		this.registers= new ArrayList<Register>();
+		this.receipts = new ArrayList<Receipt>();		
 		this.login= new Login();
 		
 		try{
@@ -77,6 +81,16 @@ public class Management {
 			return;
 		}
 		currentSale.removeItem(saleItem);		
+	}
+	
+	public String completeSale(double payment) {
+		String moneyOwedString;
+		double moneyOwed = payment - currentSale.total;
+		moneyOwedString = Double.toString(moneyOwed);
+		currentReceipt = currentSale.generateReceipt(this.saleId);
+		receipts.add(currentReceipt);
+		this.saleId++;
+		return moneyOwedString;
 	}
 	
 	public void cancelSale() {

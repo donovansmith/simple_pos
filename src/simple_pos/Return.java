@@ -32,38 +32,38 @@ public class Return extends Sale implements Transactions {
 	}
 
 
-	@Override
-	public boolean makeReturn(Object removeItem) {
-
-		removeItem(removeItem);
-
-		try {
-			//calculate total
-			for (Map.Entry<Item, Integer> singleSale : returnSale.entrySet()) {
-				Item item = singleSale.getKey();
-				Integer quantity = singleSale.getValue();
-
-				newTotal = newTotal + item.getPrice() * quantity;
-			}
-
-			//returning the payment
-			//TODO write the stub for return payment or get called from cashier
-
-			//generateReceipt and return true
-			generateReceipt();
-			//adding the receipt generated to our list of receipts for sale
-			receiptsGenerated.add(newReceipt);
-
-		}catch (NullPointerException | IllegalArgumentException e){
-			System.out.println("caught exception while making sale. Error is : " + e);
-			return false;
-		}
-
-		//update currentsale to return sale items
-		currentSale=returnSale;
-
-		return true;
-	}
+//	@Override
+//	public boolean makeReturn(Object removeItem) {
+//
+//		removeItem(removeItem);
+//
+//		try {
+//			//calculate total
+//			for (Map.Entry<Item, Integer> singleSale : returnSale.entrySet()) {
+//				Item item = singleSale.getKey();
+//				Integer quantity = singleSale.getValue();
+//
+//				newTotal = newTotal + item.getPrice() * quantity;
+//			}
+//
+//			//returning the payment
+//			//TODO write the stub for return payment or get called from cashier
+//
+//			//generateReceipt and return true
+//			//generateReceipt();
+//			//adding the receipt generated to our list of receipts for sale
+//			receiptsGenerated.add(newReceipt);
+//
+//		}catch (NullPointerException | IllegalArgumentException e){
+//			System.out.println("caught exception while making sale. Error is : " + e);
+//			return false;
+//		}
+//
+//		//update currentsale to return sale items
+//		currentSale=returnSale;
+//
+//		return true;
+//	}
 
 	//no amount needs to be paid while return
 	@Override
@@ -78,7 +78,7 @@ public class Return extends Sale implements Transactions {
 	}
 
 	@Override
-	public Receipt generateReceipt(){
+	public Receipt generateReceipt(int saleId){
 		newReceipt = new Receipt(saleId, receipt.getPurchaseDate(), new Date(), newTotal, returnSale,0, 0,amountReturned);
 		return newReceipt;
 	}

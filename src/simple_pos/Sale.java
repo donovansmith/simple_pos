@@ -10,10 +10,10 @@ import java.util.Set;
 
 public class Sale implements Transactions {
 
-	Tracker tracker = Tracker.getInstance();
+	//Tracker tracker = Tracker.getInstance();
 
 	//decalre final saleId
-	final int saleId = tracker.getSaleId();
+	protected int saleId;
 
 	//store current sale item and quantity
 	HashMap<Item, Integer> currentSale = new HashMap<>();
@@ -85,27 +85,27 @@ public class Sale implements Transactions {
 		cashRequested = true;
 	}
 
-	@Override
-	public boolean makeSale() {
-		try {
-
-			//TODO write the stub for get payment or get called from cashier
-
-			//generateReceipt and return true
-			generateReceipt();
-			//adding the receipt generated to our list of receipts for sale
-			receiptsGenerated.add(receipt);
-
-			//adding the sale to tracker
-			tracker.addSale(this);
-
-		}catch (NullPointerException | IllegalArgumentException e){
-			System.out.println("caught exception while making sale. Error is : " + e);
-			return false;
-		}
-
-		return true;
-	}
+//	@Override
+//	public boolean makeSale() {
+//		try {
+//
+//			//TODO write the stub for get payment or get called from cashier
+//
+//			//generateReceipt and return true
+//			generateReceipt();
+//			//adding the receipt generated to our list of receipts for sale
+//			receiptsGenerated.add(receipt);
+//
+//			//adding the sale to tracker
+//			tracker.addSale(this);
+//
+//		}catch (NullPointerException | IllegalArgumentException e){
+//			System.out.println("caught exception while making sale. Error is : " + e);
+//			return false;
+//		}
+//
+//		return true;
+//	}
 
 	@Override
 	public double getPayment(double amountPaid, double balance) {
@@ -115,7 +115,8 @@ public class Sale implements Transactions {
 	}
 
 	@Override
-	public Receipt generateReceipt(){
+	public Receipt generateReceipt(int saleId){
+		this.saleId=saleId;
 		receipt = new Receipt(saleId, new Date(), null, total, currentSale,amountPaid, balance,0);
 		return receipt;
 	}

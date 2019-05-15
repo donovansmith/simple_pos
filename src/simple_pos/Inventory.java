@@ -38,29 +38,27 @@ public class Inventory {
 	}
 	public void addToInventory(Item newItem) {
 		for (int i = 0; i < inventory.length; i++) {
-			if (newItem.getName().equals(inventory[i].getName())) {
+			
+			if (inventory[i] != null && newItem.getName().equals(inventory[i].getName())) {
 				inventory[i].setQuantity(newItem.getQuantity()+inventory[i].getQuantity());
 			}
-			else
-				System.out.println("Item doesn't exist");
 		}
 	}
 	
 	
 	public void removeFromInventory(Item oldItem) {
 		for (int i = 0; i < inventory.length; i++) {
-			if(oldItem.getName().contentEquals(inventory[i].getName())) {
+			if (inventory[i] != null && oldItem.getName().contentEquals(inventory[i].getName())) {
 				int stockleft = inventory[i].getQuantity()-oldItem.getQuantity();
 				if(stockleft < 0) {
 					System.out.println("Only have " + inventory[i].getQuantity() + " " + inventory[i].getName());
 				}
 				else {
 					inventory[i].setQuantity(stockleft);
+					
 					//run threshold check here?
 				}
-			}
-			else {
-				System.out.println("Item doesn't exist");
+				return;
 			}
 		}
 	}

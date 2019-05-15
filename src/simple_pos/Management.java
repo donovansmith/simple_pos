@@ -115,5 +115,10 @@ public class Management {
 	protected Sale getCurrentSale() {
 		return currentSale;
 	}
-
+	protected Cashier getCurrentCashier() {
+		return currentCashier;
+	}
+	protected Register getCurrentRegister() {
+		return currentRegister;
+	}
 }

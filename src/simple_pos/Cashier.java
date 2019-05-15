@@ -7,10 +7,7 @@ public class Cashier {
 	
 	Cashier(String name){
 		this.name = name;
-	}
-	
-	public void newDrawer() {
-		
+		this.drawer= new ArrayList<Sale>();
 	}
 	
 	public void addToDrawer(Sale sale) {
@@ -21,15 +18,6 @@ public class Cashier {
 		drawer.remove(ret);
 	}
 	
-	//function depends on definition of being "logged in"
-	public void logOut() {
-		
-	}
-	
-	//return type will depend on Inventory type
-	public void checkInventory() {
-		
-	}
 	//getters and setters
    public String getName() {
         return name;

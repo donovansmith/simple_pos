@@ -18,6 +18,10 @@ public class Register {
 		this.userDrawer = user.getDrawer();		
 	}
 	
+	public int getRegisterNumber() {
+		return registerNumber;
+	}
+	
 	@Override
 	public String toString() {
 		String s = this.registerNumber + "/n" + this.user + "/n";

@@ -10,16 +10,25 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 public class GUICashierController {
 	@FXML
-	private Button startSaleButton;
+	private Button startSaleButton;	
+	@FXML
+	private Text headTimeT;	
+	@FXML
+	private Text headRegisterT;
+	@FXML
+	private Text headCashierT;
 	
 	@FXML
 	public void initialize() {
-		
+		headCashierT.setText(Main.getManagement().getCurrentCashier().getName());
+		headRegisterT.setText(Integer.toString(Main.getManagement().getCurrentRegister().getRegisterNumber()));
 	}
 	
     @FXML

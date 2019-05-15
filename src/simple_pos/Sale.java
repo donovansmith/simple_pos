@@ -36,6 +36,8 @@ public class Sale implements Transactions {
 
 	//getting inventory instance
 	Inventory inventory = new Inventory();
+	
+	boolean firstRun = true;
 
 	@Override
 	public void addItem(Object item) {
@@ -46,6 +48,9 @@ public class Sale implements Transactions {
 			currentSale.put(newItem, 1);
 		newItem.setQuantity(1);  //making sure we set item quantity to 1 to reduce inventory quantity for this item by only 1
 		inventory.removeFromInventory(newItem);
+		
+		//calculate total
+		this.total+=newItem.getPrice();
 	}
 
 	@Override
@@ -73,14 +78,6 @@ public class Sale implements Transactions {
 	@Override
 	public boolean makeSale() {
 		try {
-
-			//calculate total
-			for (Map.Entry<Item, Integer> singleSale : currentSale.entrySet()) {
-				Item item = singleSale.getKey();
-				Integer quantity = singleSale.getValue();
-
-				total = total + item.getPrice() * quantity;
-			}
 
 			//TODO write the stub for get payment or get called from cashier
 
@@ -127,6 +124,15 @@ public class Sale implements Transactions {
 	//Getters and setters
 	public double getTotal() {
 		return this.total;
+	}
+	
+	@Override
+    public String toString() {
+		String toString="";
+		for ( Map.Entry saleItem : currentSale.entrySet()  ) {
+             toString += ((Item) saleItem.getKey()).getName() + "      " + saleItem.getValue() + "\n";
+		}
+		return toString;
 	}
 
 }

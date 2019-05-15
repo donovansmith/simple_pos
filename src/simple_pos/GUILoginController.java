@@ -4,8 +4,10 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -34,7 +36,13 @@ public class GUILoginController {
 
     	
     	if (Main.getManagement().login(usernameTF.getText(), passwordPF.getText()) ) {
-    		Main.setPane(1);
+			try {
+				Main.grid.add((AnchorPane)FXMLLoader.load(getClass().getResource("GUICashier.fxml")));
+				Main.setPane(1);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    		
     	}
     	else {
         	Alert alert = new Alert(AlertType.ERROR);

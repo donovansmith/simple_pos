@@ -24,12 +24,10 @@ public class Tracker {
         return instance;
     }
 
-
     public void addSale(Sale sale){
         if(!saleHashMap.containsKey(sale.saleId))
             saleHashMap.put(sale.saleId, sale);
     }
-
 
     public int getSaleId() {
         saleId += 1;

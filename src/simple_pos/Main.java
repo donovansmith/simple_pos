@@ -28,7 +28,6 @@ public class Main extends Application {
 			root = (AnchorPane)FXMLLoader.load(getClass().getResource("GUIAnchor.fxml"));
 			
 			grid.add((AnchorPane)FXMLLoader.load(getClass().getResource("GUILogin.fxml")));
-			grid.add((AnchorPane)FXMLLoader.load(getClass().getResource("GUICashier.fxml")));
 			
 			
 			root.getChildren().add(grid.get(0));
@@ -61,7 +60,6 @@ public class Main extends Application {
 
 	public static Management getManagement() {
 		return management;
-		
 	}
 	
 	public static void receiptPopup(){

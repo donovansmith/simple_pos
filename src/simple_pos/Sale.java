@@ -1,10 +1,16 @@
 package simple_pos;
 
 import javax.swing.plaf.basic.BasicSliderUI;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -43,18 +49,26 @@ public class Sale implements Transactions {
 	}
 
 	@Override
-	public void removeItem(Object item) {
-		Item newItem = (Item)item;
-		if(currentSale.containsKey(newItem)){
-			currentSale.put(newItem, currentSale.get(newItem)-1);
-			if(currentSale.get(newItem)<=0)
-				currentSale.remove(newItem);
-			newItem.setQuantity(newItem.getQuantity()+1); //making sure we set item quantity to 1 to increase inventory quantity for this item by only 1
-			inventory.addToInventory(newItem);
-		}
-		//calculate total
-		this.total-=newItem.getPrice();
-	}
+    public void removeItem(Object item) {
+        Item newItem = (Item)item;
+        if(currentSale.containsKey(newItem)){
+            currentSale.put(newItem, currentSale.get(newItem)-1);
+            if(currentSale.get(newItem)<=0)
+                currentSale.remove(newItem);
+            newItem.setQuantity(newItem.getQuantity()+1); //making sure we set item quantity to 1 to increase inventory quantity for this item by only 1
+            inventory.addToInventory(newItem);
+            
+            //calculate total
+            this.total-=newItem.getPrice();
+        }
+        else {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Item not in sale!");
+            alert.setHeaderText(null);
+            alert.setContentText("The item you're looking for is not in the current sale.");
+            Optional<ButtonType> result = alert.showAndWait();
+        }
+    }
 
 	@Override
 	public void cancel() {

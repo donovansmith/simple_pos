@@ -58,6 +58,7 @@ public class Management {
 			
 			this.currentCashier = new Cashier(loginSuccess);
 			this.currentRegister.setCashier(this.currentCashier);
+			cashiers.add(this.currentCashier);
 			return true;
 		}
 		else {
@@ -96,7 +97,6 @@ public class Management {
 		currentSale.inventory.updateInventoryCSV();
 		this.mainInventory = new Inventory();
 		this.currentCashier.addToDrawer(this.currentSale);
-		//this.currentRegister.addToDrawer(this.currentSale);
 		return moneyOwedString;
 	}
 	
@@ -113,23 +113,22 @@ public class Management {
 	}
 	
 	public String createIventoryReport() { //where does this go?
-		String inventoryReport = mainInventory.toString(); 
+		this.mainInventory=new Inventory();
+		String inventoryReport = "Report generated " + getTime() + "\nInventory today:\n";
+		inventoryReport = mainInventory.toString(); 
 		return inventoryReport;
 	}
 	
 	public String createCashierReport() { //where does this go?
-		String cashierReport = "";
+		String cashierReport = "Report generated " + getTime() + "\nCashiers logged in today:\n";
 		for(int n = 0; n < cashiers.size(); n++) {
 			cashierReport += cashiers.get(n).getName() + "\n";
-			for(int d = 0; d < cashiers.get(n).getDrawer().size(); d++) {
-				cashierReport += "Sale " + d + ":" + cashiers.get(n).getDrawer().get(d).toString() + "\n"; //or could use receipt
-			}
 		}
 		return cashierReport;
 	}
 	
 	public String createRegisterReport() { //where does this go?
-		String registerReport = "";
+		String registerReport = "Report generated " + getTime() + "\nRegisters today:\n";
 		for(int c = 0; c < registers.size(); c++) {
 			registerReport += registers.get(c).toString();
 		}

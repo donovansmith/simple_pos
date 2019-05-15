@@ -67,11 +67,6 @@ public class Sale implements Transactions {
 		currentSale = null;
 	}
 
-	@Override
-	public void requestCash() {
-		cashRequested = true;
-	}
-
 
 	@Override
 	public double getPayment(double amountPaid, double balance) {
@@ -89,12 +84,7 @@ public class Sale implements Transactions {
 		return receipt;
 	}
 
-
-	@Override
-	public boolean makeReturn(Object item) {
-		return false;
-	}
-
+	
 	@Override
 	public double returnPayment(double amountReturned){
 		return amountReturned;

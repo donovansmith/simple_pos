@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.io.FileReader;
 
@@ -12,6 +13,7 @@ public class Inventory {
 
 	private int count = 0;
 	private Item[] inventory = new Item[25];
+	private ArrayList<Item> orders = new ArrayList<Item>();
 	BufferedReader br = null;
 	String line = "";
 	
@@ -58,7 +60,10 @@ public class Inventory {
 				else {
 					inventory[i].setQuantity(stockleft);
 					
-					//run threshold check here?
+					//run threshold check here
+					if (stockleft < inventory[i].getThreshold()) {
+				        toOrder(inventory[i]);
+				    }
 				}
 				return;
 			}
@@ -94,6 +99,42 @@ public class Inventory {
         }
     }
 	
+    public void toOrder(Item name) {
+        Item tempItem = name;
+        tempItem.setQuantity(name.getThreshold()*3);
+        if(orders.size() == 0) {
+            orders.add(tempItem);
+        }
+        else {
+            for(int x = 0;  x < orders.size(); x++) {
+                if(orders.get(x).getName().equalsIgnoreCase(tempItem.getName())) {
+                    return;
+                }
+            orders.add(tempItem);
+            }
+        }
+        updateOrderCSV();
+        return;
+    }
+    
+    public void updateOrderCSV() {
+        try(PrintWriter writer = new PrintWriter(new File("Order.csv"))){
+            StringBuilder s = new StringBuilder();
+            
+            for(int i = 0; i < orders.size(); i++) {
+                s.append(orders.get(i).getName() + ",");
+                s.append(orders.get(i).getPrice() + ",");
+                s.append(orders.get(i).getQuantity() + ",");
+                s.append(orders.get(i).getSupplier() + ",");
+                s.append(orders.get(i).getThreshold() + ",");
+                s.append('\n');
+            }
+            writer.write(s.toString());
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    
 	@Override
     public String toString() {
         String s = null;

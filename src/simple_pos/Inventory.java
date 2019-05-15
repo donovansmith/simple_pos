@@ -50,10 +50,10 @@ public class Inventory {
 	}
 	
 	
-	public void removeFromInventory(Item oldItem) {
+	public void removeFromInventory(Item inventoryItem) {
 		for (int i = 0; i < inventory.length; i++) {
-			if (inventory[i] != null && oldItem.getName().contentEquals(inventory[i].getName())) {
-				int stockleft = inventory[i].getQuantity()-oldItem.getQuantity();
+			if (inventory[i] != null && inventoryItem.getName().contentEquals(inventory[i].getName())) {
+				int stockleft = inventoryItem.getQuantity();
 				if(stockleft < 0) {
 					System.out.println("Only have " + inventory[i].getQuantity() + " " + inventory[i].getName());
 				}

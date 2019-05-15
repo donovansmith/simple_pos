@@ -63,9 +63,9 @@
                 <GridPane alignment="CENTER" VBox.vgrow="ALWAYS">
                   <children>
                     <Button fx:id="startSaleButton" mnemonicParsing="false" onAction="#EHStartSaleButton" prefHeight="110.0" prefWidth="110.0" text="Start Sale" />
-                    <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Start Return" GridPane.rowIndex="1" />
+                    <Button mnemonicParsing="false" onAction="#EHStartReturnButton" prefHeight="110.0" prefWidth="110.0" text="Start Return" GridPane.rowIndex="1" />
                     <Button fx:id="LogoutButton" mnemonicParsing="false" onAction="#EHLogoutButton" prefHeight="110.0" prefWidth="110.0" text="Logout" GridPane.rowIndex="3" />
-                              <Button fx:id="reportButton1" mnemonicParsing="false" onAction="#EHReportButton" prefHeight="110.0" prefWidth="110.0" text="Report" GridPane.rowIndex="2" />
+                              <Button fx:id="reportButton1" mnemonicParsing="false" onAction="#EHReportButton" prefHeight="110.0" prefWidth="110.0" text="Reports" GridPane.rowIndex="2" />
                   </children>
                   <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

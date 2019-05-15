@@ -39,7 +39,17 @@ public class GUICashierController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    	Main.setPane(2);
+    	Main.setPane(Main.grid.size()-1);
+    }
+    
+    @FXML
+    private void EHStartReturnButton(ActionEvent event) {
+    	try {
+			Main.grid.add((AnchorPane)FXMLLoader.load(getClass().getResource("GUIReturn.fxml")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	Main.setPane(Main.grid.size()-1);
     }
     
     @FXML

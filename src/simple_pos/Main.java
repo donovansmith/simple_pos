@@ -76,6 +76,20 @@ public class Main extends Application {
 		receiptStage.show();
 		}
 	
+	public static void receiptListPopup(String receiptString){
+		Stage receiptStage = new Stage();
+		receiptStage.setTitle("Receipt List");
+		VBox comp = new VBox();
+		TextArea receipt = new TextArea();
+		receipt.setEditable(false);
+		receipt.setPrefHeight(600);
+		receipt.setText(receiptString);
+		comp.getChildren().add(receipt);
+		Scene stageScene = new Scene(comp, 300, 600);
+		receiptStage.setScene(stageScene);
+		receiptStage.show();
+		}
+	
 	public static void reportPopup1(String report){
 		Stage report1 = new Stage();
 		report1.setTitle("Cashier Report");

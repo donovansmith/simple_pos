@@ -17,10 +17,13 @@ public class Management {
 	private Login login;
 	
 	private Cashier currentCashier;
-	private Sale currentSale;
+	private Sale currentSale;	
 	private Register currentRegister;
 	private Receipt currentReceipt;
 	private int saleId = 10000;
+	
+	private Return currentReturn;
+	private int currentReturnID;
 	
 	BufferedReader br = null;
 	String line = "";
@@ -81,6 +84,16 @@ public class Management {
 		this.currentSale = new Sale();		
 	}
 	
+	public void startReturn(int currentReceiptID) {
+		this.currentReturn = new Return();
+		for (Receipt receipt:receipts) {
+			if (receipt.getReceiptId()== currentReceiptID ) {
+				this.currentReturn.setReceipt(receipt);
+				return;
+			}
+		}
+	}
+	
 	public void addToSale(String itemName) {
 		Item saleItem=mainInventory.searchInventory(itemName);
 		if (saleItem==null) {
@@ -97,6 +110,22 @@ public class Management {
 		currentSale.removeItem(saleItem);		
 	}
 	
+	public void addToReturn(String itemName) {
+		Item returnItem=mainInventory.searchInventory(itemName);
+		if (returnItem==null) {
+			return;
+		}
+		currentReturn.addItem(returnItem);		
+	}
+	
+	public void removeFromReturn(String itemName) {
+		Item returnItem=mainInventory.searchInventory(itemName);
+		if (returnItem==null) {
+			return;
+		}
+		currentReturn.removeItem(returnItem);		
+	}
+	
 	public String completeSale(double payment) {
 		String moneyOwedString;
 		DecimalFormat df = new DecimalFormat("#.##");
@@ -105,9 +134,22 @@ public class Management {
 		currentReceipt = currentSale.generateReceipt(this.saleId, payment, moneyOwed);
 		receipts.add(currentReceipt);
 		this.saleId++;
-		currentSale.inventory.updateInventoryCSV();
+		mainInventory.updateInventoryCSV();
 		this.mainInventory = new Inventory();
 		this.currentCashier.addToDrawer(this.currentSale);
+		return moneyOwedString;
+	}
+	
+	public String completeReturn() {
+		String moneyOwedString;
+		DecimalFormat df = new DecimalFormat("#.##");
+		double moneyOwed = currentReturn.total - currentReturn.getOldReceipt().getTotal();
+		moneyOwedString =df.format(moneyOwed);
+		receipts.remove(currentReturn.getOldReceipt());
+		currentReceipt = currentSale.generateReceipt(this.currentReturnID, 0, moneyOwed);
+		receipts.add(currentReceipt);
+		mainInventory.updateInventoryCSV();
+		this.mainInventory = new Inventory();
 		return moneyOwedString;
 	}
 	
@@ -146,6 +188,8 @@ public class Management {
 		return registerReport;
 	}
 	
+	
+	
 	//Getters & Setters
 	protected Inventory getMainInventory() {
 		return mainInventory;
@@ -161,5 +205,19 @@ public class Management {
 	}
 	protected Receipt getReceipts() {
 		return currentReceipt;
+	}
+	protected void setCurrentReturnID(int currentReturnID) {
+		this.currentReturnID=currentReturnID;
+	}
+	protected Return getCurrentReturn() {
+		return currentReturn;
+	}
+	
+	protected String getReceiptHeaders() {
+		String headers = "";
+		for (Receipt receipt:receipts) {
+			headers += receipt.headerToString() + "\n";
+		}
+		return headers;
 	}
 }

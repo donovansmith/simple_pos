@@ -122,4 +122,9 @@ public class Receipt {
         return toString;
     }
 
+    public String headerToString() {
+		String toString="Receipt ID: " + receiptId + '\n' +
+                "Purchase Date: " + purchaseDate + '\n';             
+        return toString;
+    }
 }
